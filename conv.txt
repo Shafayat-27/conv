@@ -1,0 +1,20 @@
+% Define the two signals
+x = [1 2 3 4];
+h = [1 1 1];
+
+% Compute the circular convolution using the formula
+y = zeros(1, N); % Initialize output signal
+for n = 0:N-1
+    for k = 0:N-1
+        index = n-k+1;
+        if index < 1
+            index = index + N;
+        elseif index > N
+            index = index - N;
+        end
+        y(n+1) = y(n+1) + x(k+1) * h(index);
+    end
+end
+
+% Print the resulting circular convolution
+disp(y);
